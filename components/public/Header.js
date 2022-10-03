@@ -10,7 +10,7 @@ export default function Header() {
                 <ul className={Style.Headerul}>
                     <li className={Style.Headerli}><Link className={Style.HeaderLink} to="acceuil" href='/'>Acceuil</Link></li>
                     <li className={Style.Headerli}><Link to="service" href='/service'>service</Link></li>
-                    <li className={Style.Headerli}><Link to="contact" href='/contact'>contact</Link></li>
+                    <li className={Style.Headerli}><Link to="login" href='/login'>login</Link></li>
                 </ul>
             </nav>
         </header>
