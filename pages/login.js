@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from '../components/public/Header'
+import Header from '../components/Header'
 import Style from '../styles/Login.module.css'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -7,10 +7,14 @@ import { useRouter } from 'next/router'
 export default function Contact() {
   const router = useRouter()
 
+  // axios.interceptors.request.use(request => {
+  //   request.headers.Authorization = 'Bearer'+'cookieeeeeee'
+  // })
+
 
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    email: 'lasang@cat.us',
+    password: '123oui'
   })
 
   const onChange = (e) => {
@@ -26,7 +30,9 @@ export default function Contact() {
     axios.post('http://localhost:5000/api/auth/login', credentials)
       .then(res => {
         console.log(res)
-        router.push('/admin/dashboard')
+        document.cookie = `accessToken=${res.data.accessToken}`
+        document.cookie = `refreshToken=${res.data.refreshToken}`
+        router.push('/dashboard/user')
       })
       .catch(error => console.log(error))
   }

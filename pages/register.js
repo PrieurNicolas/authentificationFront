@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from '../components/public/Header'
+import Header from '../components/Header'
 import Style from '../styles/Login.module.css'
 import axios, { Axios, AxiosError } from 'axios'
 
