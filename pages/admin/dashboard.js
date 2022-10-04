@@ -1,7 +1,11 @@
 import React from 'react'
+import Users from '../../components/fetchUsers'
 
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <>
+    Dashboard
+    <Users/>
+    </>
   )
 }
