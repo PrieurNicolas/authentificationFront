@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router';
 import { userService } from '../../src/_services/user.service';
+import Style from '../../styles/Users.module.css'
 
 export default function user() {
   const router = useRouter();
@@ -20,7 +21,6 @@ export default function user() {
     return () => flag.current = true
   }, [])
 
-
   const logOut = () => {
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
@@ -29,38 +29,38 @@ export default function user() {
 
   return (
     <>
-      <h1> Profil utilisateur : </h1>
+      <h1 className={Style.userH1}> Profil utilisateur : </h1>
 
+      <div className={Style.divUsers}>
+        <table className={Style.fltable}>
+          <thead className={Style.flthead}>
+            <tr className={Style.fltr}>
+              <th>#</th>
+              <th>Pseudo</th>
+              <th>Email</th>
+              <th>Bio</th>
+              <th>Date de creation</th>
+              <th>Date de modification</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              users.map(user => (
+                <tr className={Style.fltr}>
+                  <td>{user.id}</td>
+                  <td>{user.pseudo}</td>
+                  <td>{user.email}</td>
+                  <td>{user.bio}</td>
+                  <td>{user.createdAt}</td>
+                  <td>{user.updatedAt}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Pseudo</th>
-            <th>Email</th>
-            <th>Bio</th>
-            <th>Date de creation</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            users.map(user => (
-              <tr>
-                <td>{user.id}</td>
-                <td>{user.pseudo}</td>
-                <td>{user.email}</td>
-                <td>{user.bio}</td>
-                <td>{user.dateIncription}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-
-
-
-
-      <button type="submit" onClick={() => logOut()}>deconnexion</button>
+      <div className={Style.btnDiv}><button className={Style.btnLogOut} type="submit" onClick={() => logOut()}>Déconnexion</button></div>
     </>
   )
 }

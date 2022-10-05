@@ -4,7 +4,7 @@ let getAllusers = () => {
     return Axios.get('/api/utilisateur')
 }
 
-let getUser = (uid) => {
+let getUser = (iud) => {
     return Axios.get('/api/utilisateur/' + uid)
 }
 

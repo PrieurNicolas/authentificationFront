@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.test{
+  color: aqua;
+  background-color: brown;
+}
