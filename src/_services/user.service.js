@@ -5,7 +5,7 @@ let getAllusers = () => {
 }
 
 let getUser = (uid) => {
-    return Axios.get('/api/utilisateur/'+uid)
+    return Axios.get('/api/utilisateur/' + uid)
 }
 
 export const userService = {

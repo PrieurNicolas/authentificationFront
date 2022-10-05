@@ -40,11 +40,11 @@ export default function Contact() {
         <form onSubmit={onSubmit} className={Style.FormLog}>
           <div className={Style.group}>
             <label className={Style.LogLabel} htmlFor='email'>Email :</label>
-            <input className={Style.LogInp} type="text" name="email" value={credentials.email} onChange={onChange} required="required"/>
+            <input className={Style.LogInp} type="text" name="email" value={credentials.email} onChange={onChange} required="required" />
           </div>
           <div className={Style.group}>
             <label htmlFor='password'>Mot de passe :</label>
-            <input className={Style.LogInp} type="password" name="password" value={credentials.password} onChange={onChange} required="required"/>
+            <input className={Style.LogInp} type="password" name="password" value={credentials.password} onChange={onChange} required="required" />
           </div>
           <div className={Style.group}>
             <button className={Style.ButtLog}>Connexion</button>
@@ -52,7 +52,7 @@ export default function Contact() {
         </form>
 
         <div className={Style.group}>
-        <a href='/register'><button>S'enregistrer</button></a>
+          <a href='/register'><button>S'enregistrer</button></a>
         </div>
       </div>
     </>
