@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router';
+import { userService } from '../../src/_services/user.service';
 
 export default function user() {
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(useEffect)
+    userService.getAllusers()
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
+  }, [])
   
 
   const logOut = () => {

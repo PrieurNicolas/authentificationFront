@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import Style from '../styles/Login.module.css'
-import axios from 'axios'
 import { useRouter } from 'next/router'
+import Axios from '../src/_services/caller.service'
 
 export default function Contact() {
   const router = useRouter()
-
-  // axios.interceptors.request.use(request => {
-  //   request.headers.Authorization = 'Bearer'+'cookieeeeeee'
-  // })
-
 
   const [credentials, setCredentials] = useState({
     email: 'lasang@cat.us',
@@ -27,7 +22,7 @@ export default function Contact() {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log(credentials)
-    axios.post('http://localhost:5000/api/auth/login', credentials)
+    Axios.post(`/api/auth/login`, credentials)
       .then(res => {
         console.log(res)
         document.cookie = `accessToken=${res.data.accessToken}`
