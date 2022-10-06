@@ -5,6 +5,7 @@ import { userService } from '../../src/_services/user.service';
 import Style from '../../styles/Users.module.css'
 import Axios from '../../src/_services/caller.service'
 import { accountService } from '../../src/_services/account.service';
+import Header from '../../components/Header';
 
 export default function user() {
   const router = useRouter();
@@ -27,6 +28,9 @@ export default function user() {
           setUserPseudo(res.data.pseudo)
           setUserEmail(res.data.email)
           setUserBio(res.data.bio)
+          credentials.pseudo=(res.data.pseudo)
+          credentials.email=(res.data.email)
+          credentials.bio=(res.data.bio)
         })
         .catch(err => console.log(err))
     }
@@ -60,7 +64,7 @@ export default function user() {
     Axios.put(`/api/utilisateur/${id}`, credentials)
       .then(res => {
         console.log(res)
-        setInsc(res.data)
+        alert(res.data)
         window.location.reload(true)
       })
       .catch((error) => console.log(error) +
@@ -69,24 +73,25 @@ export default function user() {
 
   return (
     <>
+    <Header/>
       <div className={Style.updateForm}>
         <h1 className={Style.userH1}> Profil utilisateur : </h1>
 
         <form onSubmit={onSubmit} className={Style.FormLog}>
           <div className={Style.group}>
-            <label className={Style.LogLabel} htmlFor='pseudo'>Pseudo : <br /> {userPseudo}</label>
+            <label className={Style.LogLabel} htmlFor='pseudo'>Pseudo</label>
             <input className={Style.LogInp} type="text" name="pseudo" value={credentials.pseudo} onChange={onChange} />
           </div>
           <div className={Style.group}>
-            <label className={Style.LogLabel} htmlFor='email'>Email : {userEmail}</label>
+            <label className={Style.LogLabel} htmlFor='email'>Email</label>
             <input className={Style.LogInp} type="text" name="email" value={credentials.email} onChange={onChange} />
           </div>
           <div className={Style.group}>
-            <label className={Style.LogLabel} htmlFor='bio'>Bio : {userBio}</label>
+            <label className={Style.LogLabel} htmlFor='bio'>Bio</label>
             <input className={Style.LogInp} type="text" name="bio" value={credentials.bio} onChange={onChange} />
           </div>
           <div className={Style.group}>
-            <label className={Style.LogLabel} htmlFor='password'>mot de passe : ****</label>
+            <label className={Style.LogLabel} htmlFor='password'>Mot de passe</label>
             <input className={Style.LogInp} type="password" name="password" value={credentials.password} onChange={onChange} />
           </div>
 

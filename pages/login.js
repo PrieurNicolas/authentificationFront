@@ -8,8 +8,8 @@ export default function Contact() {
   const router = useRouter()
   const [insc, setInsc] = useState("")
   const [credentials, setCredentials] = useState({
-    email: 'lasang@cat.us',
-    password: '123oui'
+    email: '',
+    password: ''
   })
 
   const onChange = (e) => {
@@ -21,7 +21,6 @@ export default function Contact() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(credentials)
     Axios.post(`/api/auth/login`, credentials)
       .then(res => {
         console.log(res)
@@ -49,12 +48,12 @@ export default function Contact() {
             <input className={Style.LogInp} type="password" name="password" value={credentials.password} onChange={onChange} required="required" />
           </div>
           <div className={Style.group}>
-            <button className={Style.ButtLog}>Connexion</button>
+            <button className={Style.ButtLog}>Me connecter</button>
           </div>
         </form>
         <h1 className={Style.LogH1}>{insc}</h1>
         <div className={Style.group}>
-          <a href='/register'><button>S'enregistrer</button></a>
+          <a href='/register'><button>Créer un compte</button></a>
         </div>
       </div>
     </>

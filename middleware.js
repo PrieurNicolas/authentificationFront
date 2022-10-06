@@ -14,7 +14,13 @@ export default function middleware(req) {
         return NextResponse.redirect('http://localhost:3000/login')
     }
 
-    if (verif && url === "http://localhost:3000/") {
+    if (verif && url.includes('/login')) {
         return NextResponse.redirect('http://localhost:3000/dashboard/user')
     }
+
+    if (verif && url.includes('/register')) {
+        return NextResponse.redirect('http://localhost:3000/dashboard/user')
+    }
+
+    
 }
