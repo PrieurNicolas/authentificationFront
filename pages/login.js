@@ -6,7 +6,7 @@ import Axios from '../src/_services/caller.service'
 
 export default function Contact() {
   const router = useRouter()
-
+  const [insc, setInsc] = useState("")
   const [credentials, setCredentials] = useState({
     email: 'lasang@cat.us',
     password: '123oui'
@@ -25,11 +25,13 @@ export default function Contact() {
     Axios.post(`/api/auth/login`, credentials)
       .then(res => {
         console.log(res)
-        document.cookie = `accessToken=${res.data.accessToken}`
-        document.cookie = `refreshToken=${res.data.refreshToken}`
+        document.cookie = `accessToken=${res.data[0].accessToken}`
+        document.cookie = `refreshToken=${res.data[0].refreshToken}`
+        document.cookie = `id=${res.data[1]}`
         router.push('/dashboard/user')
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error) +
+        setInsc('Email ou mot de passe incorrect'))
   }
 
   return (
@@ -50,7 +52,7 @@ export default function Contact() {
             <button className={Style.ButtLog}>Connexion</button>
           </div>
         </form>
-
+        <h1 className={Style.LogH1}>{insc}</h1>
         <div className={Style.group}>
           <a href='/register'><button>S'enregistrer</button></a>
         </div>

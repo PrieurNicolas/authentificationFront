@@ -10,6 +10,10 @@ export default function middleware(req) {
         return NextResponse.redirect('http://localhost:3000/login')
     }
 
+    if (!verif && url.includes('/dashboard')) {
+        return NextResponse.redirect('http://localhost:3000/login')
+    }
+
     if (verif && url === "http://localhost:3000/") {
         return NextResponse.redirect('http://localhost:3000/dashboard/user')
     }

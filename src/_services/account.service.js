@@ -10,6 +10,10 @@ let getToken = () => {
     return Cookies.get('accessToken')
 }
 
+let getId = () => {
+    return Cookies.get('id')
+}
+
 export const accountService = {
-    isLogged, getToken
+    isLogged, getToken, getId
 }
