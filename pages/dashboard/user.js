@@ -19,11 +19,15 @@ export default function user() {
   })
 
   const refreshToken = () => {
-  console.log(credentialsToken)
   Axios.post(`/api/auth/refresh_token`, credentialsToken)
   .then(res => {
-    document.cookie = `accessToken=${res.data.accessToken}`
-    console.log(res)
+      if(Cookies.get("accesToken")){
+        Cookies.remove('accessToken');
+        // document.cookie = `accessToken=${res.data.accessToken}`
+        console.log(res)
+      }else{
+        document.cookie = `accessToken=${res.data.accessToken}`
+        console.log(res)}
   })
   .catch((error) => console.log(error)+alert(`Une erreur s'est produite, veuillez réessayer plus tard`)
   )}
@@ -48,6 +52,9 @@ export default function user() {
   }, [])
 
   const logOut = () => {
+    Cookies.remove('accessToken');
+    Cookies.remove('refreshToken');
+    Cookies.remove('id')
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
     Cookies.remove('id')
