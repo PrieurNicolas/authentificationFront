@@ -14,15 +14,19 @@ export default function user() {
   const [usersId, setUsersId] = useState([])
   var refreshTokenCookie = accountService.getRToken()
 
-  const refreshToken = () => {
-  console.log(refreshTokenCookie)
-  Axios.get(`api/auth/refresh_token/${refreshTokenCookie}`)
-  .then(res => {
-    console.log(res)
-    alert(res.data)
+  const [credentialsToken, setCredentialsToken] = useState({
+    refresh_token: "",
   })
-  .catch((error) => console.log(error) + setInsc((`Une erreur s'est produite, veuillez réessayer plus tard`)))
-}
+
+  const refreshToken = () => {
+  console.log(credentialsToken)
+  Axios.post(`/api/auth/refresh_token`, credentialsToken)
+  .then(res => {
+    document.cookie = `accessToken=${res.data.accessToken}`
+    console.log(res)
+  })
+  .catch((error) => console.log(error)+alert(`Une erreur s'est produite, veuillez réessayer plus tard`)
+  )}
 
 
   const flag = useRef(false)
@@ -32,12 +36,11 @@ export default function user() {
         .then(res => {
           console.log(res.data)
           setUsersId(res.data)
-          setUserPseudo(res.data.pseudo)
-          setUserEmail(res.data.email)
-          setUserBio(res.data.bio)
           credentials.pseudo=(res.data.pseudo)
           credentials.email=(res.data.email)
           credentials.bio=(res.data.bio)
+          credentialsToken.refresh_token=refreshTokenCookie
+          setCredentialsToken.refresh_token=refreshTokenCookie
         })
         .catch(err => console.log(err))
     }
