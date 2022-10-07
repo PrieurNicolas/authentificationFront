@@ -11,12 +11,19 @@ export default function user() {
   const router = useRouter();
   const [insc, setInsc] = useState("")
   var id = accountService.getId()
-
   const [usersId, setUsersId] = useState([])
+  var refreshTokenCookie = accountService.getRToken()
 
-  const [userPseudo, setUserPseudo] = useState()
-  const [userEmail, setUserEmail] = useState()
-  const [userBio, setUserBio] = useState()
+  const refreshToken = () => {
+  console.log(refreshTokenCookie)
+  Axios.get(`api/auth/refresh_token/${refreshTokenCookie}`)
+  .then(res => {
+    console.log(res)
+    alert(res.data)
+  })
+  .catch((error) => console.log(error) + setInsc((`Une erreur s'est produite, veuillez réessayer plus tard`)))
+}
+
 
   const flag = useRef(false)
   useEffect(() => {
@@ -102,6 +109,7 @@ export default function user() {
         <h1 className={Style.LogH1}>{insc}</h1>
         <h2 className={Style.userH2}>Date de création du compte :{usersId.createdAt} <br /> Date de la dernière modification du profil : {usersId.updatedAt}</h2>
         <div className={Style.btnDiv}><button className={Style.btnLogOut} type="submit" onClick={() => logOut()}>Déconnexion</button></div>
+        <div><button className={Style.btnLogOut} type="submit" onClick={() => refreshToken()}>refreshToken</button></div>
       </div>
     </>
   )

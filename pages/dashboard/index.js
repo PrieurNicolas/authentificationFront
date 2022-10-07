@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { userService } from '../../src/_services/user.service';
 import Style from '../../styles/Dashboard.module.css'
 import Axios from '../../src/_services/caller.service'
+import Header from '../../components/Header';
 
 export default function user() {
     const router = useRouter();
@@ -81,6 +82,7 @@ export default function user() {
 
     return (
         <>
+        <Header/>
             <h1 className={Style.userH1}> Dashboard : </h1>
 
             <form onSubmit={onSubmit} className={Style.FormLog}>
